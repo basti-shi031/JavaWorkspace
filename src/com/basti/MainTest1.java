@@ -1,8 +1,9 @@
 package com.basti;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
-public class Main {
+public class MainTest1 {
     public final static char[] base64_alphabet = new char[]{
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S'
             , 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'
@@ -21,7 +22,7 @@ public class Main {
         outputString("字符串 "+content+" 经过Base64编码后为:");
         outputString(encodeString);
 
-        outputString("字符串 "+encodeString+" 经过编码Base64解码后为:");
+        outputString("字符串 "+encodeString+" 经过Base64解码后为:");
         outputString(decodeString);
     }
 
@@ -75,7 +76,16 @@ public class Main {
     }
 
     public static String decode(String enContent) {
-        byte[] data = enContent.getBytes();
+        //byte[] data = enContent.getBytes();
+        byte[] data = new byte[0];
+        try {
+            data = enContent.getBytes("utf-8");
+            for (int i=0;i<data.length;i++){
+                outputString(String.valueOf(data[i]));
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         int i = 0, j = 0, enCode = 0;
         int mLength = data.length;
         byte[] char_array_4 = new byte[4];
